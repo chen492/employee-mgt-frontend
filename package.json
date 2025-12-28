@@ -37,7 +37,6 @@
   "dependencies": {
     "@ant-design/icons": "^6.1.0",
     "@ant-design/pro-components": "^2.8.10",
-    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "antd": "^6.1.2",
     "antd-style": "^3.7.1",
     "classnames": "^2.5.1",
