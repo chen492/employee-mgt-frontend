@@ -9,22 +9,22 @@ import routes from './routes';
 const { REACT_APP_ENV = 'dev' } = process.env;
 
 /**
- * @name 使用公共路径
+ * @name {} 使用公共路径
  * @description 部署时的路径，如果部署在非根目录下，需要配置这个变量
  * @doc https://umijs.org/docs/api/config#publicpath
  */
 const PUBLIC_PATH: string = '/';
 
-export default defineConfig({
+const config: ReturnType<typeof defineConfig> = defineConfig({
   /**
-   * @name 开启 hash 模式
+   * @name {} 开启 hash 模式
    * @description 让 build 之后的产物包含 hash 后缀。通常用于增量发布和避免浏览器加载缓存。
    * @doc https://umijs.org/docs/api/config#hash
    */
   hash: true,
   publicPath: PUBLIC_PATH,
   /**
-   * @name 兼容性设置
+   * @name {} 兼容性设置
    * @description 设置 ie11 不一定完美兼容，需要检查自己使用的所有依赖
    * @doc https://umijs.org/docs/api/config#targets
    */
@@ -32,14 +32,14 @@ export default defineConfig({
   //   ie: 11,
   // },
   /**
-   * @name 路由的配置，不在路由中引入的文件不会编译
+   * @name {} 路由的配置，不在路由中引入的文件不会编译
    * @description 只支持 path，component，routes，redirect，wrappers，title 的配置
    * @doc https://umijs.org/docs/guides/routes
    */
   // umi routes: https://umijs.org/docs/routing
   routes,
   /**
-   * @name 主题的配置
+   * @name {} 主题的配置
    * @description 虽然叫主题，但是其实只是 less 的变量设置
    * @doc antd的主题设置 https://ant.design/docs/react/customize-theme-cn
    * @doc umi 的 theme 配置 https://umijs.org/docs/api/config#theme
@@ -52,7 +52,7 @@ export default defineConfig({
    */
   ignoreMomentLocale: true,
   /**
-   * @name 代理配置
+   * @name {} 代理配置
    * @description 可以让你的本地服务器代理到你的服务器上，这样你就可以访问服务器的数据了
    * @see 要注意以下 代理只能在本地开发时使用，build 之后就无法使用了。
    * @doc 代理介绍 https://umijs.org/docs/guides/proxy
@@ -60,13 +60,13 @@ export default defineConfig({
    */
   proxy: proxy[REACT_APP_ENV as keyof typeof proxy],
   /**
-   * @name 快速热更新配置
+   * @name {} 快速热更新配置
    * @description 一个不错的热更新组件，更新时可以保留 state
    */
   fastRefresh: true,
   //============== 以下都是max的插件配置 ===============
   /**
-   * @name 数据流插件
+   * @name {} 数据流插件
    * @@doc https://umijs.org/docs/max/data-flow
    */
   model: {},
@@ -95,7 +95,7 @@ export default defineConfig({
     plugins: ['duration'],
   },
   /**
-   * @name 国际化插件
+   * @name {} 国际化插件
    * @doc https://umijs.org/docs/max/i18n
    */ /**
    * @name antd 插件
@@ -114,13 +114,14 @@ export default defineConfig({
     },
   },
   /**
-   * @name 网络请求配置
+   * @name {} 网络请求配置
    * @description 它基于 axios 和 ahooks 的 useRequest 提供了一套统一的网络请求和错误处理方案。
    * @doc https://umijs.org/docs/max/request
    */
   request: {},
+  reactQuery: {},
   /**
-   * @name 权限插件
+   * @name {} 权限插件
    * @description 基于 initialState 的权限插件，必须先打开 initialState
    * @doc https://umijs.org/docs/max/access
    */
@@ -138,31 +139,31 @@ export default defineConfig({
   ],
   //================ pro 插件配置 =================
   presets: ['umi-presets-pro'],
-  /**
-   * @name openAPI 插件的配置
-   * @description 基于 openapi 的规范生成serve 和mock，能减少很多样板代码
-   * @doc https://pro.ant.design/zh-cn/docs/openapi/
-   */
-  openAPI: [
-    {
-      requestLibPath: "import { request } from '@umijs/max'",
-      // 或者使用在线的版本
-      // schemaPath: "https://gw.alipayobjects.com/os/antfincdn/M%24jrzTTYJN/oneapi.json"
-      schemaPath: join(__dirname, 'oneapi.json'),
-      mock: false,
-    },
-    {
-      requestLibPath: "import { request } from '@umijs/max'",
-      schemaPath:
-        'https://gw.alipayobjects.com/os/antfincdn/CA1dOm%2631B/openapi.json',
-      projectName: 'swagger',
-    },
-  ],
+  // /**
+  //  * @name openAPI 插件的配置
+  //  * @description 基于 openapi 的规范生成serve 和mock，能减少很多样板代码
+  //  * @doc https://pro.ant.design/zh-cn/docs/openapi/
+  //  */
+  // openAPI: [
+  //   {
+  //     requestLibPath: "import { request } from '@umijs/max'",
+  //     // 或者使用在线的版本
+  //     // schemaPath: "https://gw.alipayobjects.com/os/antfincdn/M%24jrzTTYJN/oneapi.json"
+  //     schemaPath: join(__dirname, 'oneapi.json'),
+  //     mock: false,
+  //   },
+  //   {
+  //     requestLibPath: "import { request } from '@umijs/max'",
+  //     schemaPath:
+  //       'https://gw.alipayobjects.com/os/antfincdn/CA1dOm%2631B/openapi.json',
+  //     projectName: 'swagger',
+  //   },
+  // ],
   mock: {
     include: ['mock/**/*', 'src/pages/**/_mock.ts'],
   },
   /**
-   * @name 是否开启 mako
+   * @name {} 是否开启 mako
    * @description 使用 mako 极速研发
    * @doc https://umijs.org/docs/api/config#mako
    */
@@ -170,4 +171,11 @@ export default defineConfig({
   esbuildMinifyIIFE: true,
   requestRecord: {},
   exportStatic: {},
-});
+  extraBabelPlugins: [
+    [
+      'babel-plugin-react-compiler', {}
+    ],
+  ],
+})
+
+export default config;
