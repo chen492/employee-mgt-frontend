@@ -80,7 +80,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
    * @name layout 插件
    * @doc https://umijs.org/docs/max/layout-menu
    */
-  title: 'Ant Design Pro',
+  title: '员工管理系统',
   layout: {
     locale: true,
     ...defaultSettings,
@@ -171,6 +171,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
   esbuildMinifyIIFE: true,
   requestRecord: {},
   exportStatic: {},
+  // tailwindcss: {},
   extraBabelPlugins: [
     [
       'babel-plugin-react-compiler', {}
