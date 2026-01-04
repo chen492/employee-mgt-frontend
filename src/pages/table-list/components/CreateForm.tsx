@@ -4,6 +4,7 @@ import {
   ModalForm,
   ProFormText,
   ProFormTextArea,
+  ProFormUploadDragger,
 } from '@ant-design/pro-components';
 import { useRequest } from '@umijs/max';
 import { Button, message } from 'antd';
@@ -13,6 +14,7 @@ import { addRule } from '@/services/ant-design-pro/api';
 interface CreateFormProps {
   reload?: ActionType['reload'];
 }
+
 const CreateForm: FC<CreateFormProps> = (props) => {
   const { reload } = props;
   const [messageApi, contextHolder] = message.useMessage();
@@ -65,6 +67,10 @@ const CreateForm: FC<CreateFormProps> = (props) => {
           name="name"
         />
         <ProFormTextArea width="md" name="desc" />
+        <ProFormUploadDragger
+          label={'上传excel'}
+          action={'/api/employee/upload1'}
+        />
       </ModalForm>
     </>
   );
